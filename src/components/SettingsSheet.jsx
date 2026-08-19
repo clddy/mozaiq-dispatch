@@ -24,8 +24,11 @@ export default function SettingsSheet({ depots, setDepots, depotId, setDepotId, 
     <div className="sheet-backdrop" onClick={onClose}>
       <div className="sheet" onClick={(e) => e.stopPropagation()}>
         <div className="sheet-head">
-          <h2>거점 관리</h2>
-          <button className="icon-btn" onClick={onClose}>✕</button>
+          <div>
+            <span className="eyebrow">Depots</span>
+            <h2>거점 관리</h2>
+          </div>
+          <button className="icon-btn" onClick={onClose} aria-label="닫기">✕</button>
         </div>
         <div className="sheet-body">
           {depots.map((d) => (
@@ -48,7 +51,7 @@ export default function SettingsSheet({ depots, setDepots, depotId, setDepotId, 
                 className="depot-coord" type="number" step="0.0001" value={d.lng}
                 onChange={(e) => update(d.id, "lng", Number(e.target.value))}
               />
-              <button className="icon-btn" onClick={() => remove(d.id)} disabled={depots.length <= 1}>🗑</button>
+              <button className="icon-btn" onClick={() => remove(d.id)} disabled={depots.length <= 1} aria-label="삭제">−</button>
             </div>
           ))}
           <div className="depot-row add-row">
@@ -65,7 +68,7 @@ export default function SettingsSheet({ depots, setDepots, depotId, setDepotId, 
               className="depot-coord" placeholder="경도" type="number" value={draft.lng}
               onChange={(e) => setDraft({ ...draft, lng: e.target.value })}
             />
-            <button className="icon-btn" onClick={add}>＋</button>
+            <button className="icon-btn" onClick={add} aria-label="추가">+</button>
           </div>
           <p className="hint">★를 눌러 기본 거점을 선택하세요. 새로고침 시 초기화됩니다 (v0).</p>
         </div>

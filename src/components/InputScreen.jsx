@@ -52,8 +52,11 @@ export default function InputScreen({
     <div className="screen">
       <header className="topbar">
         <div className="topbar-row">
-          <h1>오늘의 배차</h1>
-          <button className="icon-btn" onClick={onOpenSettings} aria-label="거점 설정">⚙️</button>
+          <div className="topbar-title">
+            <span className="eyebrow">Daily Dispatch</span>
+            <h1>오늘의 배차</h1>
+          </div>
+          <button className="icon-btn text-btn" onClick={onOpenSettings} aria-label="거점 설정">거점</button>
         </div>
         <div className="topbar-row controls">
           <div className="segment mode-toggle">
@@ -126,7 +129,7 @@ export default function InputScreen({
                             공실 {vacantDays}일째{promoted ? " · 승격" : ""}
                           </span>
                         )}
-                        {s && <span className="tag tag-blue">오늘 체크아웃</span>}
+                        {s && <span className="tag tag-gold">오늘 체크아웃</span>}
                       </div>
                     </div>
                     {s && (
