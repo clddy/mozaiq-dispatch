@@ -13,7 +13,7 @@ import { CONFIG } from "./config.js";
 
 // 데모 시드: 이미 공실 상태인 별장 (체크아웃 후 경과일).
 // 실데이터 연동 시 예약 시스템에서 계산해 내려줄 값.
-const VACANT_SEED = { sawasawa: 1, yunseul: 2, ikki: 3 };
+const VACANT_SEED = { granite: 1, travertine: 2, darak: 3 };
 
 const villaById = Object.fromEntries(villasData.map((v) => [v.id, v]));
 

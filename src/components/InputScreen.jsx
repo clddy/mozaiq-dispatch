@@ -119,7 +119,7 @@ export default function InputScreen({
                       <div>
                         <strong>{v.name}</strong>
                         <span className="villa-meta">
-                          {v.size_pyeong ? `${v.size_pyeong}평` : "평수 미상"}
+                          {v.area} · {v.size_pyeong ? `${v.size_pyeong}평` : "평수 미상"}
                           {v.features.map((f) => ` · ${LABELS.features[f]}`).join("")}
                         </span>
                       </div>

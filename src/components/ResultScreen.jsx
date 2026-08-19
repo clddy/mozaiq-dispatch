@@ -3,6 +3,10 @@ import { LABELS } from "../config.js";
 
 const LEVEL_CLASS = { URGENT: "lv-urgent", RECOMMENDED: "lv-warn", DEFERRABLE: "lv-calm" };
 
+// 셔틀 휴리스틱은 단조롭지 않다 — 별장을 추가하면 초기 드롭 배치가 바뀌어
+// 총 이동시간이 오히려 줄어들 수 있다. 그 경우 부호를 그대로 보여준다.
+const signed = (n) => `${n > 0 ? "+" : ""}${n}분`;
+
 function JobCard({ job, badge }) {
   return (
     <div className={`job-card ${LEVEL_CLASS[job.level] ?? "lv-calm"}`}>
@@ -91,7 +95,7 @@ export default function ResultScreen({
         {bundles.length > 0 && (
           <section>
             <h2 className="section-title">
-              <span className="dot" style={{ background: "var(--gold)" }} />
+              <span className="dot" style={{ background: "var(--bronze)" }} />
               묶어가기 추천
               <span className="count">{bundles.length}</span>
             </h2>
@@ -104,7 +108,13 @@ export default function ResultScreen({
                   </span>
                 </div>
                 <ul className="bundle-numbers">
-                  <li><span>오늘 경로에 끼우면 이동</span><b>+{rec.detour}분</b></li>
+                  <li>
+                    <span>
+                      오늘 경로에 끼우면 이동
+                      {rec.detour <= 0 && <em className="note"> 오히려 단축</em>}
+                    </span>
+                    <b>{signed(rec.detour)}</b>
+                  </li>
                   <li><span>따로 가면 왕복</span><b>{rec.solo}분</b></li>
                   <li className="saving-row"><span>절약</span><b>{rec.saving}분</b></li>
                 </ul>
